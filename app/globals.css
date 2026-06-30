@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-zinc-50 text-zinc-900 antialiased;
+}
+
+/* Estilos do corpo do artigo (Markdown renderizado). */
+.article-body {
+  @apply text-zinc-700 leading-relaxed;
+}
+.article-body h2 {
+  @apply mt-10 mb-3 text-2xl font-bold text-zinc-900;
+}
+.article-body h3 {
+  @apply mt-8 mb-2 text-xl font-semibold text-zinc-900;
+}
+.article-body p {
+  @apply my-4;
+}
+.article-body ul {
+  @apply my-4 list-disc space-y-1 pl-6;
+}
+.article-body ol {
+  @apply my-4 list-decimal space-y-1 pl-6;
+}
+.article-body a {
+  @apply text-brand underline underline-offset-2;
+}
+.article-body strong {
+  @apply font-semibold text-zinc-900;
+}
+.article-body blockquote {
+  @apply my-6 border-l-4 border-brand bg-orange-50 px-4 py-2 italic text-zinc-700;
+}
+.article-body code {
+  @apply rounded bg-zinc-100 px-1.5 py-0.5 text-sm text-brand-dark;
+}
+.article-body pre {
+  @apply my-6 overflow-x-auto rounded-lg bg-zinc-900 p-4 text-sm text-zinc-100;
+}
+.article-body pre code {
+  @apply bg-transparent p-0 text-zinc-100;
+}
