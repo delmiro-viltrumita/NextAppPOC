@@ -1,7 +1,7 @@
 import { getPosts } from '@/lib/delivery';
 import { PostCard } from '@/components/post-card';
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   const posts = await getPosts();

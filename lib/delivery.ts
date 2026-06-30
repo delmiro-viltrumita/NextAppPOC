@@ -1,8 +1,5 @@
 import type { DeliveryDocument, DeliveryListResponse } from './types';
 
-// Revalidação ISR: o conteúdo é re-buscado no máximo a cada 5 min.
-const REVALIDATE_SECONDS = 300;
-
 function baseUrl(): string {
   const raw = process.env.DELIVERY_API_URL?.trim();
   if (!raw) throw new Error('DELIVERY_API_URL não configurada');
@@ -29,7 +26,8 @@ export class DeliveryError extends Error {
 async function fetchJson<T>(url: string): Promise<T> {
   const res = await fetch(url, {
     headers: authHeaders(),
-    next: { revalidate: REVALIDATE_SECONDS },
+    // Sem cache: cada request bate na Delivery API e devolve a última versão.
+    cache: 'no-store',
   });
   if (!res.ok) throw new DeliveryError(res.status, await res.text());
   return res.json() as Promise<T>;

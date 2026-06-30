@@ -2,20 +2,15 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getPostBySlug, getPosts } from '@/lib/delivery';
+import { getPostBySlug } from '@/lib/delivery';
 import { buildJsonLd, buildMetadata } from '@/lib/seo';
 import { coverOf } from '@/lib/types';
 import { PostBody } from '@/components/post-body';
 import { formatDate } from '@/components/date';
 
-export const revalidate = 300;
+export const dynamic = 'force-dynamic';
 
 type Params = { params: Promise<{ slug: string }> };
-
-export async function generateStaticParams() {
-  const posts = await getPosts();
-  return posts.map((p) => ({ slug: p.uid }));
-}
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
